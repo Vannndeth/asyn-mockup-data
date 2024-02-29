@@ -6,8 +6,7 @@ let renderProfile = document.querySelector("#renderProfile");
 let render = document.querySelector("#render");
 const base_URL = "http://127.0.0.1:3000/data/";
 
-// Fetch Data function
-async function getCards(endpoint) {
+async function getData(endpoint) {
   try {
     const response = await fetch(`${base_URL}${endpoint}.json`);
     const data = await response.json();
@@ -17,15 +16,13 @@ async function getCards(endpoint) {
   }
 }
 
-// Render Products Card
-const products = await getCards("products");
+const products = await getData("products");
 
 products.map((product) => {
   render.innerHTML += cardComponent(product);
 });
 
-// Render Profile Card
-const users = await getCards("users");
+const users = await getData("users");
 users.map((user) => {
   renderProfile.innerHTML += proFileComponent(user);
 });
